@@ -11,7 +11,8 @@ gem 'connection_pool'                   # Simple connection pooling
 # API clients and adapters
 gem 'faraday'                           # Flexible HTTP client library
 gem 'faraday_middleware'                # Request/response middleware for Faraday
-gem 'pandora_client'                    # Pandora Tuner API client
+gem 'pandora_client', '>= 0.1.3'        # Pandora Tuner API client
+gem 'puma'        			# Puma 
 
 # Full-text search
 gem 'tire'                              # ElasticSearch adapter
