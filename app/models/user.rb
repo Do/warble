@@ -1,4 +1,7 @@
 class User < ActiveRecord::Base
+
+  attr_accessible :facebook_id, :first_name, :last_name, :email, :photo_url
+
   validate :facebook_id, presence: true
   validate :first_name,  presence: true
   validate :last_name,   presence: true
