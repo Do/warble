@@ -27,5 +27,5 @@ class Warble.PandoraPlayerView extends Backbone.View
     value = @model.get('volume') / 100
     @$('audio').each -> @volume = value
 
-  finished: ->
+  finished: =>
     @trigger 'song:finished'
