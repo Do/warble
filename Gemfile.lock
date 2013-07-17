@@ -1,4 +1,13 @@
 GIT
+  remote: https://github.com/archit/pandora_client.git
+  revision: b562aec4803c05b8c6f949ceddc2b0cd98d942f8
+  specs:
+    pandora_client (0.1.3)
+      crypt19-rb (~> 1.2.1)
+      faraday (~> 0.8)
+      nokogiri (~> 1.5.2)
+
+GIT
   remote: https://github.com/nixme/rdio-ruby.git
   revision: f95ba6285ef0376f14d939832d49b1b75d316a3d
   specs:
@@ -190,10 +199,6 @@ GEM
       omniauth (~> 1.0)
     omniauth-rdio (0.1.0)
       omniauth-oauth (~> 1.0)
-    pandora_client (0.1.3)
-      crypt19-rb (~> 1.2.1)
-      faraday (~> 0.8)
-      nokogiri (~> 1.5.2)
     patron (0.4.16)
     pg (0.14.1)
     polyglot (0.3.3)
@@ -334,7 +339,7 @@ DEPENDENCIES
   nokogiri
   omniauth-facebook
   omniauth-rdio
-  pandora_client (>= 0.1.3)
+  pandora_client!
   patron
   pg
   puma
