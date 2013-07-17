@@ -5,7 +5,7 @@ module Pandora
     def index
       retry_on_auth_failure do |pandora_client|
         station = pandora_client.stations.find { |s| s.id == params[:station_id] }   # TODO: use the token and we don't need the extra `stations` call here
-        pandora_songs = station.next_songs   # grab 4 songs
+        pandora_songs = station.next_songs.select { |song| !song.title.nil? }   # grab 4 songs
 
         # Speed up grabbing music IDs by doing network fetches concurrently
         pandora_songs.map do |pandora_song|
