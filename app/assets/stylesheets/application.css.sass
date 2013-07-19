@@ -70,7 +70,7 @@ $z-header:             3
 @mixin card-style
   padding: $card-style-padding
   +box-shadow(rgba(0,0,0,.45) 0px 1px 12px)
-  background: image-url('/assets/white_noise.png')
+  background: #fefefe
   +border-radius()
 
 %button-active
@@ -117,8 +117,7 @@ html, body
 
 body
   min-width: 1150px
-  background: image-url('/assets/wood.jpg') fixed
-  color: #555
+  background: #ededed
   position: relative
   z-index: $z-body
   font-family: $default-font
@@ -287,7 +286,8 @@ span.pictos
 
 
 .metadata
-  +card-style()
+  padding: $card-style-padding
+  background: #fefefe
   display: block
   +border-radius(0)
 
@@ -310,7 +310,7 @@ span.pictos
 #playing
   width: $left-column-width
   position: relative
-  +box-shadow(rgba(0,0,0,.33) 0 1px 8px)
+  +box-shadow(rgba(0,0,0,.33) 0 -3px 8px)
   .voters
     margin-top: 8px
 
@@ -344,12 +344,15 @@ span.pictos
     width: 100%
     height: 100%
     +box-shadow(rgba(255,255,255,.18) 0 1px 0 inset)
-    background: image-url('/assets/album-gloss.png') no-repeat
+    // background: image-url('/assets/album-gloss.png') no-repeat
 
 #controls
   +card-style
   +border-top-radius(0)
   min-height: 72px
+  border-top: 1x #ddd solid
+  margin-top: 1px
+
 
 #forward, #vote
   display: inline-block
@@ -410,7 +413,7 @@ span.pictos
     -webkit-animation-timing-function: linear
 
 #add
-  height: 94%
+  height: 90%
   +card-style
   position: relative
   margin-right: $application-margin
@@ -465,7 +468,7 @@ ul#sources
 
     &.selected
       position: relative
-      background: image-url('/assets/white_noise.png')
+      background: #fefefe
       border: 1px solid rgba(0, 0, 0, .18)
       +border-top-left-radius()
       +border-top-right-radius()
@@ -528,6 +531,19 @@ ul#pandora_songs, ul#search_results
       height: auto
       width: 100%
       +box-shadow(rgba(0, 0, 0, 0.6) 1px 1px 4px)
+      background: white
+      &:hover
+        opacity: 0.6
+      &:after
+        background: green
+        position: absolute
+        z-index: 4
+        content: '+'
+        color: blue
+        font-size: 40px
+        display: block
+        width: 100%
+        height: 100%
 
     .title
       margin-top: 10px
@@ -539,14 +555,19 @@ ul#pandora_songs, ul#search_results
   z-index: $z-queue-background
 
 #songs
-  margin-top: 8px
+  margin: 8px 0 30px
   width: $left-column-width
-  overflow-y: auto
+  +card-style
+
 
   li
-    +card-style
-    margin-bottom: 8px
-
+    padding: $card-style-padding
+    border-bottom: 1px #ddd solid
+    &:first-child
+      padding-top: 0px
+    &:last-child
+      border-bottom: 0px
+      padding-bottom: 0px
     img
       +box-shadow(#fff 0px 1px 1px, #000 0px 1px 4px inset)
       +border-radius(2px)
