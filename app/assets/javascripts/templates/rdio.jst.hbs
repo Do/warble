@@ -12,12 +12,12 @@
 <ul id="search_results">
   {{#results}}
   <li>
-    <a href="#" class="result" data-id="{{id}}">
-      <div class="song">
-        <img src="{{cover_url}}" />
-        <div class="artist">{{artist}}</div>
-        <div class="title">{{title}}</div>
-      </div>
+    <a href="#" class="result entry" data-id="{{id}}">
+        <img class="thumbnail" src="{{cover_url}}" />
+        <p class="title">{{title}}</p>
+        <p class="author">{{artist}}</p>
+
+
     </a>
   </li>
   {{/results}}

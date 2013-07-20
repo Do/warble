@@ -398,19 +398,26 @@ span.pictos
   padding-bottom: 3px   // so overflow from @ellipsis doesnt cut off descenders
 
 
-#spinner
-  display: none
-  background: rgba(0, 0, 0, 0.3)
-  width: 353px  // 3px over #adds width for its border
+.loading
+  background: rgba(0, 0, 0, 0.6)
+  left: 50%
+  top: 50%
+  margin: -36px 0 0 -36px
+  position: absolute
+  +border-radius(5px)
+  
+.spinner
+  padding: 20px
+  //width: 353px  // 3px over #adds width for its border
   z-index: $z-add-spinner
+  -webkit-animation-name: spin
+  -webkit-animation-duration: 1s
+  -webkit-animation-iteration-count: infinite
+  -webkit-animation-timing-function: linear
 
-  img
-    float: right
-    margin: -15px -10px 0 0
-    -webkit-animation-name: spin
-    -webkit-animation-duration: 1s
-    -webkit-animation-iteration-count: infinite
-    -webkit-animation-timing-function: linear
+    
+.hidden
+  visibility: hidden
 
 #add
   height: 90%
@@ -513,14 +520,14 @@ ul#pandora_songs, ul#search_results
 #youtube_search, #library_search, #username_search  // TODO: combine
   margin-left: 15px
 
-#youtube_search_results
+ul[id*="search_results"], #youtube_search_results  // TODO: combine
   li  // TODO: combine with pandora_songs list
     position: relative
     float: left
     padding: 8px
     width: 33%
     height: 375px
-
+      
     .preview
       font-size: 11px
       padding: 4px 0
@@ -531,23 +538,33 @@ ul#pandora_songs, ul#search_results
       height: auto
       width: 100%
       +box-shadow(rgba(0, 0, 0, 0.6) 1px 1px 4px)
-      background: white
-      &:hover
+      background: white      
+        
+    .entry
+      position: relative
+      display: block
+      &:hover > *
         opacity: 0.6
-      &:after
-        background: green
+        color: #2985E5
+      &:hover:before
+        color: #fff
+        +border-radius(2px)
+        background: rgba(0,0,0,0.8)
         position: absolute
-        z-index: 4
-        content: '+'
-        color: blue
+        content: "+"
+        padding: 5px 0 0px
+        z-index: 9
         font-size: 40px
         display: block
-        width: 100%
-        height: 100%
+        height: auto
+        text-align: center
+        width: 60px
+        margin: -30px 0 0 -30px
+        left: 50%
+        top: 50%
 
     .title
       margin-top: 10px
-
 
 #queue
   background: #DDD
