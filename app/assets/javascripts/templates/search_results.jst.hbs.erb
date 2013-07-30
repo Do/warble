@@ -1,0 +1,33 @@
+<ul class="search_results">
+  {{#results}}
+  <li>
+    <a href="#" class="result" data-id="{{id}}">
+      <div class="song">
+        <img src="{{cover_url}}" />
+        <div class="artist">{{artist}}</div>
+        <div class="title">{{title}}</div>
+        <span class='clear'></span>
+        {{#if canDelete}}        
+        <!-- TODO a helper for this -->
+        <div class="video collapsed" data-action="delete" data-id="{{id}}">Delete</div>
+        {{/if}}
+      </div>
+    </a>
+  </li>
+  {{/results}}
+</ul>
+
+
+{{#if hasPrev}}
+  <a href="#" class="paging button" id="previous_results">
+    <span class="pictos">[</span>
+    Previous
+  </a>
+{{/if}}
+
+{{#if hasNext}}
+  <a href="#" class="paging button" id="next_results">
+    Next
+    <span class="pictos">]</span>
+  </a>
+{{/if}}

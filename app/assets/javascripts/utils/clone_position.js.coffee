@@ -6,15 +6,11 @@ Utils.clonePosition = (src, target, options = {}) ->
   _.defaults options,
     setWidth: true
     setHeight: true
-    offsetLeft: 0
-    offsetTop: 0
-
-  offsets = $(src).offset()
 
   $(target).css {
     position: 'absolute'
-    top: "#{offsets.top + options.offsetTop}px"
-    left: "#{offsets.left + options.offsetLeft}px"
+    top: "0"
+    left: "0"
   }
 
   if options.setWidth
