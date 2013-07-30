@@ -28,7 +28,9 @@ jQuery(document).ready ($) ->
     window.rdioPlayer = new Warble.RdioPlayerView model: jukebox
     window.rdioPlayer.on 'song:finished', finish
 
-  jukebox.fetch()   # load current song to play
+  jukebox.fetch # load current song to play
+    data: $.param
+      player: true  # indicate its the player 
 
   Warble.push.initialize()
   Warble.push.bind 'jukebox:change', (data) ->

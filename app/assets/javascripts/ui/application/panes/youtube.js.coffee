@@ -29,7 +29,7 @@ class Warble.YoutubeSearchView extends Warble.PaneView
 
   handleEnter: (event) ->
     if event.which == 13
-      this.search event
+      @search event
 
   previewVideo: (event) ->
     button = @$(event.currentTarget)
@@ -40,20 +40,18 @@ class Warble.YoutubeSearchView extends Warble.PaneView
     target.append preview_el.html  window.JST['templates/youtube_preview']
       youtube_id: button.data("youtube")
 
-    # WTF is this
-    Utils.clonePosition image, preview_el,
-      offsetTop: -17
-      offsetLeft: -400
+    # WTF is this (this clones where the image is and puts a preview over it)
+    Utils.clonePosition image, preview_el
 
     @
 
   previousPage: (event) ->
     @startIndex -= @pageSize + 1
-    this.search event
+    @search event
 
   nextPage: (event) ->
     @startIndex += @pageSize + 1
-    this.search event
+    @search event
 
   search: (event) ->
     window.workspace.showSpinner()

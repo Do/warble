@@ -1,39 +1,63 @@
 #= require ui/application/panes/pane
 #= require templates/search
+#= require templates/search_results
 
 # TODO: abstract some of this stuff out to a generic
 #       search class that Youtube can share
 class Warble.SearchView extends Warble.PaneView
   template: window.JST['templates/search']
+  resultsTemplate: window.JST['templates/search_results']
 
   events:
-    'click a.library_search' : 'search'
-    'keypress input'         : 'handleEnter'
-    'click a.result'         : 'queueVideo'
+    'click a.library_search'   : 'search'
+    'keypress input'           : 'handleEnter'
+    'click a.result'           : 'queueVideo'
+    'click a#previous_results' : 'previousPage'
+    'click a#next_results'     : 'nextPage'
 
   initialize: ->
+    @page = 1
+    @pageSize   = 10
     @collection = new Warble.SearchList
-    @collection.bind 'all', @render, this
+    @collection.bind 'all', @render, @
 
   render: ->
     @$el.html @template
-      query:   @collection.query
-      results: @collection.toJSON()
-    this
+      query:   @collection.query      
+    @
 
   activate: ->
     @$('#search_query').focus()
 
   handleEnter: (event) ->
     if event.which == 13
-      this.search event
+      @search event
+
+  previousPage: (event) ->
+    @page -= 1
+    @page = 1 if @page < 1 
+    @search event
+
+  nextPage: (event) ->
+    @page += 1
+    @search event
 
   search: (event) ->
+    @page = 1
     @collection.query = @$('#search_query').val()
+    successCallback = =>
+      window.workspace.hideSpinner()
+      @$('#search_results').html @resultsTemplate
+        results: @collection.toJSON()
+        hasPrev: @page > 1
+        hasNext: @collection.size() > @pageSize
 
     window.workspace.showSpinner()
     @collection.fetch
-      success: -> window.workspace.hideSpinner()
+      data: $.param
+        page: @page
+        size: @pageSize
+      success: successCallback
       error: ->
         window.workspace.navigate '/', true
         window.workspace.hideSpinner()

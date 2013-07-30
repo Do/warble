@@ -9,9 +9,10 @@ class Warble.ServiceChooserView extends Backbone.View
     this
 
   autoSelectTab: ->
-    target = if Backbone.history.fragment isnt "" then Backbone.history.fragment else "/"
+    target = if Backbone.history.fragment isnt "" then Backbone.history.fragment else "search"
+
     $("#sources .selected").toggleClass 'selected', no
-    $("#sources [href='#{target}']").parent().toggleClass 'selected', yes
+    $("#sources [href='/#{target}']").parent().toggleClass 'selected', yes
 
   # TODO: Create a collection of services.
   selectTab: (view) ->

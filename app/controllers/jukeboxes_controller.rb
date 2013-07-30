@@ -13,6 +13,24 @@ class JukeboxesController < ApplicationController
   end
 
   def show
+    # If the player is retrieving the song, track it
+    if params[:player] 
+      song = Jukebox.current_song
+      if $scrobbler
+        # TODO track the song, need credentials to test
+        unless $scrobbler.session_id
+        # $scrobbler.handshake! # get token / session id
+        end
+        # playing = Scrobbler::Playing.new(:session_id => $scrobbler.session_id,
+        #                         :now_playing_url => $scrobbler.now_playing_url,
+        #                         :artist => song.artist,
+        #                         :track => song.title,
+        #                         :album => song.album
+        # )
+      end
+    end
+
+
     render json: Jukebox
   end
 

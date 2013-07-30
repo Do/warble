@@ -14,6 +14,7 @@ gem 'faraday_middleware'                # Request/response middleware for Farada
 gem 'pandora_client', git: 'https://github.com/archit/pandora_client.git'        # Pandora Tuner API client
 gem 'rdio-ruby', git: 'https://github.com/nixme/rdio-ruby.git'
 gem 'puma'        			# Puma 
+gem 'scrobbler'
 
 # Full-text search
 gem 'tire'                              # ElasticSearch adapter
