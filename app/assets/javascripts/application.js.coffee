@@ -32,7 +32,7 @@ jQuery(document).ready ($) ->
       'hype/popular/3days/:page'  : 'hypePopular3Days'
       'hype/popular/week/:page'   : 'hypePopularWeek'
       'hype/:user/:page'          : 'hypeUser'
-      '*unmatched'                : 'home'
+      '*unmatched'                : 'search'
 
     initialize: ->
       # initialize models/collections
@@ -78,23 +78,20 @@ jQuery(document).ready ($) ->
       view.activate?()
       @currentView = view
 
-    home: ->
-      @switchPane new Backbone.View
-
     search: (query) ->
       #if query?
         # TODO: fill in
       @switchPane @searchView
 
     pandoraStations: ->
-      this.showSpinner()
+      @showSpinner()
       @stationList.fetch
         success: =>
           @switchPane @pandoraStationsView
-          this.hideSpinner()
+          @hideSpinner()
         error: =>
           @switchPane @pandoraAuthView
-          this.hideSpinner()
+          @hideSpinner()
 
     pandoraSongs: (id) ->
       station = @stationList.get(id)
@@ -103,7 +100,7 @@ jQuery(document).ready ($) ->
         station = @stationList.get(id)
 
       if station?
-        this.showSpinner()
+        @showSpinner()
         station.songs.fetch
           success: =>
             @switchPane (new Warble.PandoraSongsView { model: station })
